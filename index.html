@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8c1c13">
+<title>静功修身</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="seal">静</div>
+  <h1>静功 · 修身</h1>
+</header>
+
+<main>
+  <!-- 计时页 -->
+  <section id="page-timer" class="page active">
+    <div class="dial">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle class="ring-bg" cx="100" cy="100" r="90"/>
+        <circle class="ring" id="ring" cx="100" cy="100" r="90"/>
+      </svg>
+      <div class="dial-text">
+        <div id="clock">15:00</div>
+        <div id="status">请选择时间</div>
+      </div>
+    </div>
+
+    <div id="sliderBox" class="card">
+      <label for="slider">拖动选择时间：<b id="sliderLabel">15 分钟</b></label>
+      <input type="range" id="slider" min="2" max="60" step="1" value="15">
+      <div class="range-ends"><span>2分钟</span><span>60分钟</span></div>
+
+      <div class="quick" id="quick"></div>
+    </div>
+
+    <div class="controls">
+      <button id="btnStart" class="big primary">开 始</button>
+      <button id="btnReset" class="big ghost" hidden>重 来</button>
+    </div>
+    <p class="hint">时间到了会有钟声提醒。计时时请不要关闭这个页面。</p>
+  </section>
+
+  <!-- 功法页 -->
+  <section id="page-guide" class="page">
+    <div id="guideHome">
+      <p class="lead">请点一个功法：</p>
+      <div id="catGrid" class="grid"></div>
+    </div>
+    <div id="guideList" hidden>
+      <button id="btnBack" class="back">← 返回</button>
+      <h2 id="listTitle"></h2>
+      <div id="items"></div>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button id="tabTimer" class="tab active" data-page="timer"><span>⏳</span>计时</button>
+  <button id="tabGuide" class="tab" data-page="guide"><span>☯</span>功法引导</button>
+</nav>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
