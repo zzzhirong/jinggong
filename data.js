@@ -18,7 +18,7 @@ const CATEGORIES = [
     desc: "李凤山师父 · 梅门",
     items: [
       { title: "平甩功 10分钟", note: "李凤山师父示范，适合每天练习", type: "视频", youtube: "2fGQ0W-RKfI", minutes: 10 },
-      { title: "平甩功 30分钟", note: "连续练习说明版", type: "视频", search: "李鳳山師父平甩功 30分鐘 連續鍛練", site: "youtube", minutes: 30 }
+      { title: "平甩功 30分钟", note: "连续练习说明版", type: "视频", youtube: "iWD-w06Me8s", minutes: 30 }
     ]
   },
   {
@@ -95,4 +95,5 @@ const CATEGORIES = [
     ]
   }
 ];
+
 
