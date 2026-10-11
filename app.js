@@ -15,8 +15,8 @@ let curMin = 15, totalSec = 15 * 60, endAt = 0, remainSec = totalSec, timerId = 
 let musicOn = true, ytFrame = null, ytState = -1;
 
 // 分钟数 -> 静坐音乐的 YouTube ID（来自 data.js 里的“静坐音乐”）
-const MUSIC = {};
-CATEGORIES.find(c => c.id === 'jingzuo').items.forEach(i => { MUSIC[i.minutes] = i.youtube; });
+const MUSIC = {}, LABELS = {};
+CATEGORIES.find(c => c.id === 'jingzuo').items.forEach(i => { MUSIC[i.minutes] = i.youtube; LABELS[i.minutes] = i.label; });
 
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 
@@ -24,13 +24,16 @@ function setMinutes(m) {
   curMin = m;
   totalSec = remainSec = m * 60;
   $('sliderLabel').textContent = m + ' 分钟';
+  $('pickLabel').textContent = LABELS[m] ? '（' + LABELS[m] + '）' : '';
   clock.textContent = fmt(totalSec);
   ring.style.strokeDashoffset = 0;
   document.querySelectorAll('#quick button').forEach(b => b.classList.toggle('on', +b.dataset.m === m));
 }
-Object.keys(MUSIC).map(Number).sort((a, b) => a - b).forEach(m => {
+// 计时按钮：只显示 data.js 里写了 label（功效）的静坐音乐
+CATEGORIES.find(c => c.id === 'jingzuo').items.filter(i => i.label).sort((a, b) => a.minutes - b.minutes).forEach(i => {
+  const m = i.minutes;
   const b = document.createElement('button');
-  b.textContent = m + '分'; b.dataset.m = m;
+  b.innerHTML = `<span class="qm">${m}分钟</span><span class="ql">${i.label}</span>`; b.dataset.m = m;
   b.onclick = () => { if (!running) setMinutes(m); };
   $('quick').appendChild(b);
 });

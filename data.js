@@ -9,6 +9,8 @@
 //    Plain web link: { title:"Name", type:"音频", link:"https://..." }
 //    No link yet:    { title:"Name", type:"视频", search:"search words", site:"youtube" or "bilibili" }
 //  type is shown to your mom: "视频" = video, "音频" = audio.
+//  label (静坐音乐 only) = the short text under the time on the timer buttons;
+//        a track WITHOUT a label gets no timer button.
 //  minutes = suggested length; adds a button that sets the timer to it.
 //  Keep the Chinese text (title, note) in Mandarin - that's what she sees.
 // ============================================================
@@ -75,14 +77,14 @@ const CATEGORIES = [
     icon: "坐",
     desc: "按时间长短选择",
     items: [
-      { title: "15分钟静坐音乐", note: "眼睛疲劳放松", type: "音频", youtube: "RA50y17i6A0", minutes: 15 },
-      { title: "20分钟静坐音乐", note: "胸口放松、深呼吸", type: "音频", youtube: "WN8-t_Vw-Bw", minutes: 20 },
-      { title: "25分钟静坐音乐", note: "眼前放松、安定", type: "音频", youtube: "-Q9xtl_e09Y", minutes: 25 },
-      { title: "30分钟静坐音乐", note: "528Hz 眼部修护", type: "音频", youtube: "egg4dlZongs", minutes: 30 },
-      { title: "35分钟静坐音乐", note: "爱自己 · 深层放松", type: "音频", youtube: "kuZwMp0nqd4", minutes: 35 },
-      { title: "40分钟静坐音乐", note: "眼睛放松", type: "音频", youtube: "weMdM24NmFQ", minutes: 40 },
-      { title: "45分钟静坐音乐", note: "身体轻盈放松", type: "音频", youtube: "Y5A2BGNCe4k", minutes: 45 },
-      { title: "50分钟静坐音乐", note: "闭眼聆听", type: "音频", youtube: "4R8nRlOjEXo", minutes: 50 },
+      { title: "15分钟 · 干眼舒缓", note: "静坐音乐", type: "音频", youtube: "RA50y17i6A0", minutes: 15, label: "干眼舒缓" },
+      { title: "20分钟 · 脾脏排毒", note: "静坐音乐", type: "音频", youtube: "f59JnWq2umk", minutes: 20, label: "脾脏排毒" },
+      { title: "25分钟 · 飞蚊症舒缓", note: "静坐音乐", type: "音频", youtube: "-Q9xtl_e09Y", minutes: 25, label: "飞蚊症舒缓" },
+      { title: "30分钟 · 改善老花", note: "静坐音乐", type: "音频", youtube: "egg4dlZongs", minutes: 30, label: "改善老花" },
+      { title: "35分钟 · 别再委屈", note: "静坐音乐", type: "音频", youtube: "kuZwMp0nqd4", minutes: 35, label: "别再委屈" },
+      { title: "40分钟 · 眼睛放松", note: "静坐音乐", type: "音频", youtube: "weMdM24NmFQ", minutes: 40, label: "眼睛放松" },
+      { title: "45分钟 · 肝脏排毒", note: "静坐音乐", type: "音频", youtube: "e99lDwBbV1g", minutes: 45, label: "肝脏排毒" },
+      { title: "50分钟 · 肾脏排毒", note: "静坐音乐", type: "音频", youtube: "4R8nRlOjEXo", minutes: 50, label: "肾脏排毒" },
       { title: "55分钟静坐音乐", note: "肩颈放松", type: "音频", youtube: "YNQ0hNgwUc0", minutes: 55 },
       { title: "60分钟静坐音乐", note: "一小时 · 深度放松", type: "音频", youtube: "fAh3bea0Vq0", minutes: 60 }
     ]
@@ -97,6 +99,9 @@ const CATEGORIES = [
     ]
   }
 ];
+
+
+
 
 
 

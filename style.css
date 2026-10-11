@@ -139,3 +139,14 @@ h2 { color: var(--red); font-size: 1.6rem; margin: 14px 0; letter-spacing: .15em
 #musicAudio { width: 100%; }
 
 .vid { width: 100%; margin-top: 12px; border-radius: 10px; background: #000; border: 2px solid var(--gold); display: block; }
+
+.quick { grid-template-columns: repeat(4, 1fr); }
+.quick button { padding: 10px 0; line-height: 1.25; }
+.quick .qm { display: block; font-size: .9rem; }
+.quick .ql { display: block; font-size: .68rem; font-weight: 400; margin-top: 2px; }
+
+.pick-label-row { text-align: center; font-size: 1.35rem; font-weight: 700; color: var(--red); min-height: 1.7em; margin: -4px 0 8px; letter-spacing: .1em; }
+.quick .ql { font-size: .62rem; white-space: nowrap; }
+
+.pick { display: none; }
+.dial { width: min(52vw, 30vh, 260px); margin-bottom: 8px; }
