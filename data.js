@@ -3,6 +3,8 @@
 //  To add a video, copy one line and change it. Formats:
 //    YouTube video:  { title:"Name", note:"Description", type:"视频", youtube:"VIDEO_ID" }
 //        (VIDEO_ID = the letters after youtu.be/ and before the ?)
+//    Video file on the site: { title:"Name", type:"视频", video:"video/file.mp4" }
+//        (several parts that play in a row: video:["video/a.mp4", "video/b.mp4"]; keep each file under 25 MB)
 //    Bilibili video: { title:"Name", type:"视频", bilibili:"BV_NUMBER" }
 //    Plain web link: { title:"Name", type:"音频", link:"https://..." }
 //    No link yet:    { title:"Name", type:"视频", search:"search words", site:"youtube" or "bilibili" }
@@ -17,8 +19,8 @@ const CATEGORIES = [
     icon: "甩",
     desc: "李凤山师父 · 梅门",
     items: [
-      { title: "平甩功 10分钟", note: "李凤山师父示范，适合每天练习", type: "视频", youtube: "2fGQ0W-RKfI", minutes: 10 },
-      { title: "平甩功 30分钟", note: "连续练习说明版", type: "视频", youtube: "iWD-w06Me8s", minutes: 30 }
+      { title: "平甩功 10分钟", note: "李凤山师父示范，适合每天练习", type: "视频", video: "video/pingshuai-10.mp4", minutes: 10 },
+      { title: "平甩功 30分钟", note: "连续练习说明版", type: "视频", video: ["video/pingshuai-30-0.mp4", "video/pingshuai-30-1.mp4", "video/pingshuai-30-2.mp4"], minutes: 30 }
     ]
   },
   {
@@ -36,7 +38,7 @@ const CATEGORIES = [
     icon: "筋",
     desc: "古导引易筋经",
     items: [
-      { title: "古导引易筋经", note: "张玉松老师示范", type: "视频", youtube: "8vr20TpUZsE" }
+      { title: "古导引易筋经", note: "张玉松老师示范", type: "视频", video: "video/yijinjing.mp4" }
     ]
   },
   {
@@ -45,7 +47,7 @@ const CATEGORIES = [
     icon: "刚",
     desc: "张至顺道长",
     items: [
-      { title: "八部金刚功（跟练版）", note: "完整五遍，跟着一起练", type: "视频", youtube: "ow_qvzuHJbM" }
+      { title: "八部金刚功（跟练版）", note: "完整五遍，跟着一起练", type: "视频", video: "video/jingang.mp4" }
     ]
   },
   {
@@ -95,5 +97,7 @@ const CATEGORIES = [
     ]
   }
 ];
+
+
 
 

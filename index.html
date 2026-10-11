@@ -29,16 +29,22 @@
     </div>
 
     <div id="sliderBox" class="card">
-      <label for="slider">拖动选择时间：<b id="sliderLabel">15 分钟</b></label>
-      <input type="range" id="slider" min="2" max="60" step="1" value="15">
-      <div class="range-ends"><span>2分钟</span><span>60分钟</span></div>
-
+      <div class="pick">请选择时间：<b id="sliderLabel">15 分钟</b></div>
       <div class="quick" id="quick"></div>
+      <button id="musicToggle" class="music-toggle on">🎵 配乐：开</button>
     </div>
 
     <div class="controls">
       <button id="btnStart" class="big primary">开 始</button>
       <button id="btnReset" class="big ghost" hidden>重 来</button>
+    </div>
+    <div id="musicBox" hidden>
+      <div class="mbar">
+        <div class="mbar-top"><span>🎵 配乐播放中</span><span id="mTime">00:00 / 15:00</span></div>
+        <div class="mtrack"><div id="mFill"></div><div id="mKnob"></div></div>
+      </div>
+      <div id="musicSlot" class="hidden-player"></div>
+      <p class="hint" id="musicHint" hidden>没有声音？请点一下上面的播放键 ▶</p>
     </div>
     <p class="hint">时间到了会有钟声提醒。计时时请不要关闭这个页面。</p>
   </section>
