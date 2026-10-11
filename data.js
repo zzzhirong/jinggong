@@ -6,6 +6,7 @@
 //    Video file on the site: { title:"Name", type:"视频", video:"video/file.mp4" }
 //        (several parts that play in a row: video:["video/a.mp4", "video/b.mp4"]; keep each file under 25 MB)
 //    Bilibili video: { title:"Name", type:"视频", bilibili:"BV_NUMBER" }
+//    Audio file on the site: { title:"Name", type:"音频", audio:"gongfa/01.mp3" }
 //    Plain web link: { title:"Name", type:"音频", link:"https://..." }
 //    No link yet:    { title:"Name", type:"视频", search:"search words", site:"youtube" or "bilibili" }
 //  type is shown to your mom: "视频" = video, "音频" = audio.
@@ -93,12 +94,17 @@ const CATEGORIES = [
     id: "drive",
     name: "道家功法音频",
     icon: "音",
-    desc: "云端文件夹里的录音",
+    desc: "魏老师 · 一级功法录音",
     items: [
-      { title: "道家功法音频（打开文件夹）", note: "里面是妈妈收集的录音，点开后选择要听的", type: "音频", link: "https://drive.google.com/drive/folders/1j9gjuhSLjZ2XKKf1vEP5RKL1qaOEnwmP" }
+      { title: "一 · 养生剑指桩", note: "魏老师 · 降噪版 · 约25分钟", type: "音频", audio: "gongfa/01.mp3" },
+      { title: "二 · 蛹动贯气法", note: "魏老师 · 降噪版 · 约12分钟", type: "音频", audio: "gongfa/02.mp3" },
+      { title: "三 · 颤抖功", note: "魏老师 · 降噪版 · 约13分钟", type: "音频", audio: "gongfa/03.mp3" },
+      { title: "四 · 以音助气通周法", note: "魏老师 · 降噪版 · 约28分钟", type: "音频", audio: "gongfa/04.mp3" },
+      { title: "五 · 养气法", note: "魏老师 · 降噪版 · 约26分钟", type: "音频", audio: "gongfa/05.mp3" }
     ]
   }
 ];
+
 
 
 

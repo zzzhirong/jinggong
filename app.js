@@ -194,7 +194,14 @@ function openCategory(c) {
       if (href) { x.href = href; x.target = '_blank'; x.rel = 'noopener'; } else x.onclick = fn;
       btns.appendChild(x);
     };
-    if (it.video) {
+    if (it.audio) {
+      // 网站自带的录音文件
+      add('▶ 开始收听', '', () => {
+        document.querySelectorAll('#items audio').forEach(a => a.pause());
+        slot.innerHTML = `<audio class="aud" controls preload="metadata" src="${it.audio}"></audio>`;
+        slot.querySelector('audio').play().catch(() => {});
+      });
+    } else if (it.video) {
       // 网站自带的视频文件；长视频分成几段，会自动接着播放
       add('▶ 开始观看', '', () => {
         const parts = [].concat(it.video); let i = 0;
