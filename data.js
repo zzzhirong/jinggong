@@ -60,7 +60,6 @@ const CATEGORIES = [
     icon: "桩",
     desc: "李一道长养生大讲堂",
     items: [
-      { title: "太乙站桩功 15分钟", note: "B站视频，点开后选第一个", type: "视频", search: "李一道长养生大讲堂 太乙站桩功", site: "bilibili", minutes: 15 },
       { title: "太乙站桩功 36分钟", note: "完整跟练", type: "视频", youtube: "wBfdk3zIUAU", minutes: 36 }
     ]
   },
@@ -95,13 +94,13 @@ const CATEGORIES = [
     id: "drive",
     name: "道家功法音频",
     icon: "音",
-    desc: "魏老师 · 一级功法录音",
+    desc: "杨老师 · 一级功法录音",
     items: [
-      { title: "一 · 养生剑指桩", note: "魏老师 · 降噪版 · 约25分钟", type: "音频", audio: "gongfa/01.mp3" },
-      { title: "二 · 蛹动贯气法", note: "魏老师 · 降噪版 · 约12分钟", type: "音频", audio: "gongfa/02.mp3" },
-      { title: "三 · 颤抖功", note: "魏老师 · 降噪版 · 约13分钟", type: "音频", audio: "gongfa/03.mp3" },
-      { title: "四 · 以音助气通周法", note: "魏老师 · 降噪版 · 约28分钟", type: "音频", audio: "gongfa/04.mp3" },
-      { title: "五 · 养气法", note: "魏老师 · 降噪版 · 约26分钟", type: "音频", audio: "gongfa/05.mp3" }
+      { title: "一 · 养生剑指桩", note: "约25分钟", type: "音频", audio: "gongfa/01.mp3" },
+      { title: "二 · 蛹动贯气法", note: "约12分钟", type: "音频", audio: "gongfa/02.mp3" },
+      { title: "三 · 颤抖功", note: "约13分钟", type: "音频", audio: "gongfa/03.mp3" },
+      { title: "四 · 以音助气通周法", note: "约28分钟", type: "音频", audio: "gongfa/04.mp3" },
+      { title: "五 · 养气法", note: "约26分钟", type: "音频", audio: "gongfa/05.mp3" }
     ]
   }
 ];
