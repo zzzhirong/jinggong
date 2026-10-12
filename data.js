@@ -30,9 +30,10 @@ const CATEGORIES = [
     id: "baduanjin",
     name: "八段锦",
     icon: "锦",
-    desc: "健身气功 · 杨柏龙",
+    desc: "健身气功 · 医学八段锦",
     items: [
-      { title: "健身气功·八段锦", note: "杨柏龙老师教学", type: "视频", search: "健身气功 八段锦 杨柏龙", site: "bilibili" }
+      { title: "健身气功 · 八段锦", note: "国家体育总局认定版", type: "视频", youtube: "QDIx22h2TBc" },
+      { title: "台湾版 · 医学八段锦", note: "卫生福利部 · 动作示范（第一部分）", type: "视频", youtube: "KIMFPfrLYSs" }
     ]
   },
   {
@@ -69,7 +70,7 @@ const CATEGORIES = [
     icon: "焦",
     desc: "吴清忠老师",
     items: [
-      { title: "三焦经运动", note: "吴清忠老师亲自示范", type: "视频", search: "吴清忠 三焦经运动", site: "youtube" }
+      { title: "三焦经运动", note: "吴清忠老师亲自示范", type: "视频", youtube: "R-Z0CdQn0Oo" }
     ]
   },
   {
