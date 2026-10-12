@@ -60,7 +60,7 @@ const CATEGORIES = [
     desc: "李一道长养生大讲堂",
     items: [
       { title: "太乙站桩功 15分钟", note: "B站视频，点开后选第一个", type: "视频", search: "李一道长养生大讲堂 太乙站桩功", site: "bilibili", minutes: 15 },
-      { title: "太乙站桩功 36分钟", note: "B站视频，点开后选第二个", type: "视频", search: "李一道长养生大讲堂 太乙站桩功", site: "bilibili", minutes: 36 }
+      { title: "太乙站桩功 36分钟", note: "完整跟练", type: "视频", youtube: "wBfdk3zIUAU", minutes: 36 }
     ]
   },
   {
