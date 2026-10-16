@@ -12,11 +12,11 @@ const clock = $('clock'), statusEl = $('status');
 const ring = $('ring'), dial = document.querySelector('.dial');
 const CIRC = 2 * Math.PI * 90;
 let curMin = 15, totalSec = 15 * 60, endAt = 0, remainSec = totalSec, timerId = null, running = false, wakeLock = null;
-let musicOn = true, ytFrame = null, ytState = -1;
+let musicOn = true, player = null;
 
-// 分钟数 -> 静坐音乐的 YouTube ID（来自 data.js 里的“静坐音乐”）
+// 分钟数 -> 计时配乐文件（来自 data.js 里“静坐音乐”的 timerAudio）
 const MUSIC = {}, LABELS = {};
-CATEGORIES.find(c => c.id === 'jingzuo').items.forEach(i => { MUSIC[i.minutes] = i.youtube; LABELS[i.minutes] = i.label; });
+CATEGORIES.find(c => c.id === 'jingzuo').items.forEach(i => { MUSIC[i.minutes] = i.timerAudio; LABELS[i.minutes] = i.label; });
 
 const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 
@@ -44,42 +44,24 @@ function setMusic(on) {
 }
 $('musicToggle').onclick = () => { if (!running) setMusic(!musicOn); };
 
-/* 配乐（YouTube 播放器，用消息控制 暂停/继续/停止） */
-function ytCmd(func) {
-  if (ytFrame && ytFrame.contentWindow)
-    ytFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: '' }), '*');
-}
+/* 配乐（网站自带的音频文件；在点“开始”的同一瞬间播放，手机才允许出声） */
 function startMusic() {
-  const id = MUSIC[curMin];
-  if (!musicOn || !id) return;
-  $('musicSlot').innerHTML = `<div class="player audio"><iframe id="ytFrame" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&loop=1&playlist=${id}&rel=0&playsinline=1&enablejsapi=1" allow="autoplay; encrypted-media"></iframe></div>`;
-  ytFrame = $('ytFrame'); ytState = -1;
-  ytFrame.onload = () => ytFrame && ytFrame.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
+  const src = MUSIC[curMin];
+  if (!musicOn || !src) return;
+  player = new Audio(src);
+  player.loop = true;
   $('musicBox').hidden = false; $('musicHint').hidden = true;
-  $('musicSlot').classList.remove('reveal');
   updateBar();
-  // 如果手机不让自动播放，就把播放器露出来，请妈妈点一下
-  setTimeout(() => {
-    if (running && ytFrame && ytState !== 1) { $('musicSlot').classList.add('reveal'); $('musicHint').hidden = false; }
-  }, 4000);
+  player.play().catch(() => { $('musicHint').hidden = false; });
 }
+function resumeMusic() { if (player) player.play().catch(() => { $('musicHint').hidden = false; }); }
+function pauseMusic() { if (player) player.pause(); }
 function stopMusic() {
-  ytCmd('stopVideo');
-  $('musicSlot').innerHTML = ''; $('musicSlot').classList.remove('reveal'); ytFrame = null;
-  $('musicBox').hidden = true;
+  if (player) { player.pause(); player.src = ''; player = null; }
+  $('musicBox').hidden = true; $('musicHint').hidden = true;
 }
-// 监听 YouTube 播放状态（1 = 正在播放）
-window.addEventListener('message', e => {
-  if (!/youtube/.test(e.origin)) return;
-  try {
-    const d = JSON.parse(e.data);
-    const st = d.info && (d.info.playerState !== undefined ? d.info.playerState : undefined);
-    if (st !== undefined) {
-      ytState = st;
-      if (st === 1) { $('musicSlot').classList.remove('reveal'); $('musicHint').hidden = true; }
-    }
-  } catch (_) {}
-});
+// 万一手机没出声，妈妈点这个按钮就能播放
+$('musicHint').onclick = () => { if (player) player.play().then(() => { $('musicHint').hidden = true; }).catch(() => {}); };
 // 进度条（走完整个计时时间）
 function updateBar() {
   const done = totalSec - remainSec, pct = Math.max(0, Math.min(100, done / totalSec * 100));
@@ -117,7 +99,7 @@ function tick() {
   remainSec = Math.max(0, Math.round((endAt - Date.now()) / 1000));
   clock.textContent = fmt(remainSec);
   ring.style.strokeDashoffset = CIRC * (1 - remainSec / totalSec);
-  if (ytFrame) updateBar();
+  if (player) updateBar();
   if (remainSec <= 0) finish();
 }
 function finish() {
@@ -137,7 +119,7 @@ function start() {
   try { const c = new (window.AudioContext || window.webkitAudioContext)(); c.resume(); c.close(); } catch (e) {}
   running = true; endAt = Date.now() + remainSec * 1000;
   timerId = setInterval(tick, 500);
-  if (fresh) startMusic(); else ytCmd('playVideo');
+  if (fresh) startMusic(); else resumeMusic();
   statusEl.textContent = '练功中…请放松';
   $('btnStart').textContent = '暂 停';
   $('btnReset').hidden = false;
@@ -146,7 +128,7 @@ function start() {
 }
 function pause() {
   clearInterval(timerId); running = false; keepAwake(false);
-  tick(); ytCmd('pauseVideo'); statusEl.textContent = '已暂停';
+  tick(); pauseMusic(); statusEl.textContent = '已暂停';
   $('btnStart').textContent = '继 续';
 }
 $('btnStart').onclick = () => running ? pause() : start();
